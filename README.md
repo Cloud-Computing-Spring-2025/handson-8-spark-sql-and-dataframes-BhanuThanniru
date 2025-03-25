@@ -310,16 +310,39 @@ A leaderboard of verified users based on audience engagement.
 | **Total**                   | **1** |
 
 ---
+# Approach followed for Social Media Analysis
 
-## 📬 Submission Checklist
+## Task 1: Identifying Trending Hashtags
+*Approach:*
+- Extract hashtags from the 'Hashtags' column by splitting the values using commas.
+- Normalize by converting them to lowercase and trimming spaces.
+- Remove empty hashtags.
+- Count the occurrences of each hashtag.
+- Sort the hashtags by count in descending order and retrieve the top 10.
+- Save the result as a CSV file.
 
-- [ ] PySpark scripts in the `src/` directory  
-- [ ] Output files in the `outputs/` directory  
-- [ ] Datasets in the `input/` directory  
-- [ ] Completed `README.md`  
-- [ ] Commit everything to GitHub Classroom  
-- [ ] Submit your GitHub repo link on canvas
+## Task 2: Engagement by Age Group
+*Approach:*
+- Join posts.csv and users.csv using the UserID column to combine user demographic data with post engagement metrics.
+- Group the dataset by AgeGroup.
+- Compute the average number of likes and retweets for each age group.
+- Sort the age groups based on average likes in descending order.
+- Save the result as a CSV file.
 
----
+## Task 3: Sentiment vs Engagement
+*Approach:*
+- Categorize posts based on sentiment scores:
+  - Positive if sentiment score > 0.3
+  - Neutral if sentiment score is between -0.3 and 0.3
+  - Negative if sentiment score < -0.3
+- Compute the average likes and retweets for each sentiment category.
+- Sort the results by sentiment category.
+- Save the result as a CSV file.
 
-Now go uncover the trends behind the tweets 📊🐤✨
+## Task 4: Top Verified Users by Reach
+*Approach:*
+- Filter users who are verified (Verified = True).
+- Join with posts.csv using UserID to get engagement data.
+- Calculate total reach for each user as the sum of likes and retweets.
+- Sort users by total reach in descending order and retrieve the top 5.
+- Save the result as a CSV file.
